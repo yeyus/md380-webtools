@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+}
+
+ul.clean {
+    padding: 0;
+    list-style-type: none;
+}
+
+div.sidebar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100%;
+    background-color: #000000;
+    color: #FFFFFF;
+    z-index: 2000;
+    overflow: hidden;
+    transition-property: width;
+    transition-duration: 0.2s;
+}
+
+div.sidebar:hover {
+    width: 225px;
+    transition-property: width;
+    transition-duration: 0.2s;
+}
+
+div.content {
+    margin-left: 80px;
+    min-height: 100%;
+}

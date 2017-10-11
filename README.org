@@ -1,0 +1,68 @@
+* MD380 Web
+
+** lsusb output
+
+#+begin_example
+Bus 006 Device 002: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 
+  bDeviceSubClass         0 
+  bDeviceProtocol         0 
+  bMaxPacketSize0        64
+  idVendor           0x0483 STMicroelectronics
+  idProduct          0xdf11 STM Device in DFU Mode
+  bcdDevice            2.00
+  iManufacturer           1 @00000004 : ffffffff
+  iProduct                2 Patched MD-380/390G
+  iSerial                 3 00000000010C
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength           36
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          2 Patched MD-380/390G
+    bmAttributes         0xc0
+      Self Powered
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           0
+      bInterfaceClass       254 Application Specific Interface
+      bInterfaceSubClass      1 Device Firmware Update
+      bInterfaceProtocol      2 
+      iInterface              6 @Internal Flash   /0x08000000/03*016Kg
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       1
+      bNumEndpoints           0
+      bInterfaceClass       254 Application Specific Interface
+      bInterfaceSubClass      1 Device Firmware Update
+      bInterfaceProtocol      2 
+      iInterface              7 @SPI Flash Memory /0x00000000/16*064Kg
+      Device Firmware Upgrade Interface Descriptor:
+        bLength                             9
+        bDescriptorType                    33
+        bmAttributes                       11
+          Will Detach
+          Manifestation Intolerant
+          Upload Supported
+          Download Supported
+        wDetachTimeout                    255 milliseconds
+        wTransferSize                    1024 bytes
+        bcdDFUVersion                   1.1a
+can't get device qualifier: Resource temporarily unavailable
+can't get debug descriptor: Resource temporarily unavailable
+Device Status:     0x0001
+  Self Powered
+#+end_example
+
