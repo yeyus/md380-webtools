@@ -5,8 +5,7 @@ const initialState = {
     downloadProgressBytes: 0,
     downloadTotalBytes: 0,
     error: null,
-    list: [],
-    codeplugs: []
+    list: []
 };
 
 const device = (state = initialState, action) => {
@@ -15,6 +14,11 @@ const device = (state = initialState, action) => {
     console.log('action: ', action);
 
     switch (action.type) {
+    case 'DEVICE_CLEAN':
+        return {
+            ...state,
+            list: []
+        };
     case 'ATTACH_DEVICE_REQUEST':
         return {
             ...state,

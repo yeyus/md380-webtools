@@ -1,12 +1,15 @@
-.icon {
-    width: 48px;
-    height: 48px;
+.item {
+    width: 225px;
     color: #fff;
-    font-size: 48px;
 }
 
-.wrapper {
-    width: 80px;
-    height: 80px;
-    padding: 5px;
+.item:hover {
+    color: #999;
+}
+
+.label {
+    display: inline-block;
+    font-size: 1.3em;
+    vertical-align: middle;
+    height: 65px;
 }

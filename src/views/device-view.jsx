@@ -12,6 +12,9 @@ import DeviceList from 'components/device/device-list';
 import DeviceRequestButton from 'components/device/device-request-button';
 import DeviceTransferDialog from 'components/device/device-transfer-dialog';
 
+// TODO remove me
+import Hex from 'components/hex/hex';
+
 class DeviceView extends React.Component {
     componentDidMount() {
         this.props.onInit();
@@ -37,6 +40,11 @@ class DeviceView extends React.Component {
                 <DeviceRequestButton
                     disabled={ this.props.devices.length > 0 }
                     onClick={ this.props.onDeviceRequestClick }/>
+                <Hex
+                    blob={ null }
+                    start={0}
+                    end={12}
+                    lineSize={16}/>
             </div>
         );
     }

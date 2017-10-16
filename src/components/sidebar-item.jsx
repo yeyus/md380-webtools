@@ -1,21 +1,32 @@
+import * as sidebarStyles from 'style/sidebar.css';
+
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 
+import classNames from 'classnames';
+
+const baseIcon = {
+    width: 48,
+    height: 48,
+    fontSize: 48
+};
+
 const styles = {
     icon: {
-        width: 48,
-        height: 48,
+        ...baseIcon,
         color: '#fff',
-        fontSize: 48
+        iconHoverColor: '#999',
+    },
+    selectedIcon: {
+        ...baseIcon,
+        color: '#008',
+        iconHoverColor: '#00d'
     },
     wrapper: {
         width: 80,
         height: 80,
         padding: 5,
-    },
-    listElement: {
-        width: '225px',
     },
     label: {
         fontSize: '1.3em',
@@ -26,14 +37,17 @@ const styles = {
 };
 
 const SidebarItem = (props) => (
-    <li style={styles.listElement}>
+    <li className={ sidebarStyles.item }>
         <IconButton
-            iconClassName="material-icons"
-            iconStyle={styles.icon}
+            iconClassName={ classNames('material-icons') }
+            iconStyle={props.selected ? styles.selectedIcon : styles.icon}
             style={styles.wrapper}>
             { props.icon }
         </IconButton>
-        <div style={styles.label}>{ props.label }</div>
+        <div
+            className={ sidebarStyles.label }>
+            { props.label }
+        </div>
     </li>
 );
 

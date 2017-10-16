@@ -1,3 +1,5 @@
+import style from 'style/index.css';
+
 import React, { Component } from 'react';
 
 import DeviceInfoCard from 'components/device/device-info-card';
@@ -18,7 +20,7 @@ export default class DeviceList extends Component {
         );
 
         return (
-            <ul className="clean">
+            <ul className={ style.clean }>
                 { listElements }
                 { (!this.props.devices || this.props.devices && this.props.devices.length === 0) && noElements }
             </ul>
