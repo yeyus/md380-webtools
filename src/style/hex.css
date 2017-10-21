@@ -1,0 +1,31 @@
+.hex-editor {
+
+}
+
+ul.wrapper {
+    padding: 5px;
+    margin: 10px;
+    background-color: #ddd;
+}
+
+li.line {
+    list-style-type: none;
+    padding: 0;
+}
+
+code.contents {
+    font-size: 1.2em;
+}
+
+.cell {
+    box-sizing: content-box;
+}
+
+.cell-type-hex {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.cellHover {
+    border: 1px solid #00f;
+}

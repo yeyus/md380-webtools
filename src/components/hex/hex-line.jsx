@@ -1,4 +1,7 @@
+import styles from 'style/hex.css';
+
 import React from 'react';
+import HexCell from 'components/hex/hex-cell';
 
 function padHex(value) {
     let str = value.toString(16),
@@ -23,67 +26,94 @@ export default class HexLine extends React.Component {
         super(props);
 
         this.state = {
-            data: null
+            data: null,
+            hoverCellOffset: -1
         };
     }
 
     async componentDidMount() {
         let ab = await blobToArrayBuffer(this.props.data);
         let view = new DataView(ab.target.result);
+
         this.setState({
             data: view
         });
     }
 
-    getHexContentString() {
+    getEncodedCell(offset, encodingFn) {
         let { data } = this.state,
             { size } = this.props.size,
-            bytes = [];
+            cells = [];
 
         if (!data) {
-            return bytes;
+            return cells;
         }
 
         for (let i = 0; i < this.props.size; i++) {
-            try {
-                bytes.push(data.getUint8(i).toString(16));
-            } catch (e) {
-                bytes.push('--')
-            }
+            cells.push(encodingFn.bind(this)(data, i, offset));
         }
 
-        return bytes.join(' ');
+        return cells;
     }
 
-    getAsciiContentString() {
-        let { data } = this.state,
-            { size } = this.props.size,
-            letters = [];
 
-        if (!data) {
-            return letters;
+    asciiEncoding(data, i, offset) {
+        try {
+            return (
+                <HexCell
+                    key={offset + i}
+                    offset={offset + i}
+                    isHover={ this.props.hoverCellOffset === offset + i }
+                    onCellEnter={this.props.onCellEnter}
+                    text={String.fromCharCode(data.getUint8(i))} />
+            );
+        } catch(e) {
+            return (
+                <HexCell
+                    key={offset + i}
+                    offset={offset + i}
+                    isHover={ this.props.hoverCellOffset === offset + i }
+                    onCellEnter={this.props.onCellEnter}
+                    text="." />
+            );
         }
+    }
 
-        for (let i = 0; i < this.props.size; i++) {
-            try {
-                letters.push(String.fromCharCode(data.getUint8(i)));
-            } catch(e) {
-                letters.push('.')
-            }
+    hexEncoding(data, i, offset) {
+        try {
+            return (
+                <HexCell
+                    key={offset + i}
+                    offset={offset + i}
+                    className={ styles['cell-type-hex'] }
+                    isHover={ this.props.hoverCellOffset === offset + i }
+                    onCellEnter={this.props.onCellEnter}
+                    text={data.getUint8(i).toString(16)} />
+            );
+        } catch (e) {
+            return (
+                <HexCell
+                    key={offset + i}
+                    offset={offset + i}
+                    className={ styles['cell-type-hex'] }
+                    isHover={ this.props.hoverCellOffset === offset + i }
+                    onCellEnter={this.props.onCellEnter}
+                    text="--" />
+            );
         }
-
-        return letters.join('');
     }
 
     render() {
-        let offset = padHex(this.props.offset);
-        let size = this.props.size;
-        let hexContents = this.getHexContentString(),
-            asciiContents = this.getAsciiContentString();
+        let offset = padHex(this.props.offset),
+            size = this.props.size,
+            hexContents = this.getEncodedCell(this.props.offset, this.hexEncoding),
+            asciiContents = this.getEncodedCell(this.props.offset, this.asciiEncoding);
 
         return (
-            <li>
-                <code>{offset} {hexContents} {asciiContents} </code>
+            <li className={styles.line}>
+                <code className={styles.contents}>
+                    {offset} <span>{hexContents}</span> <span>{asciiContents}</span>
+                </code>
             </li>
         );
     }

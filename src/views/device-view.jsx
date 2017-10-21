@@ -25,6 +25,10 @@ class DeviceView extends React.Component {
     }
 
     render() {
+        const sample = new Blob(['hello world! la vida pirata es la vida mejor #$%^&*'], {
+            type: 'text/plain'
+        });
+
         return (
             <div className="device-view">
                 <DeviceTransferDialog
@@ -41,9 +45,9 @@ class DeviceView extends React.Component {
                     disabled={ this.props.devices.length > 0 }
                     onClick={ this.props.onDeviceRequestClick }/>
                 <Hex
-                    blob={ null }
+                    blob={sample}
                     start={0}
-                    end={12}
+                    end={sample.size}
                     lineSize={16}/>
             </div>
         );
