@@ -3,6 +3,7 @@ import styles from 'style/hex.css';
 import React from 'react';
 
 import HexLine from 'components/hex/hex-line';
+import DownloadButton from 'components/hex/download-button.jsx';
 
 export default class Hex extends React.Component {
 
@@ -37,15 +38,29 @@ export default class Hex extends React.Component {
     }
 
     render() {
-        let lines = this.generateLines(this.props.blob,
-                                       this.props.start,
-                                       this.props.end,
-                                       this.props.lineSize);
+        const { blob, fileName, start, end, lineSize } = this.props;
+        let lines = this.generateLines(blob,
+                                       start,
+                                       end,
+                                       lineSize);
 
         return (
-            <ul className={styles.wrapper} >
-                { lines }
-            </ul>
+            <div className={ styles.hexEditor }>
+                <div className={ styles.hexEditorTopBar }>
+                    <div className={ styles.hexEditorFileActions }>
+                        <DownloadButton
+                            blob={blob}
+                            fileName={fileName} />
+                    </div>
+                    <div className={ styles.hexEditorFileInfo }>
+                        239892 bytes
+                    </div>
+                </div>
+
+                <ul className={styles.wrapper} >
+                    { lines }
+                </ul>
+            </div>
         );
     }
 }

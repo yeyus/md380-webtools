@@ -1,11 +1,38 @@
-.hex-editor {
+.hexEditor {
+    position: relative;
+    margin: 16px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
 
+.hexEditorTopBar {
+    padding: 5px 10px;
+    background-color: #fafbfc;
+    border-bottom: 1px solid #e1e4e8;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.hexEditorFileActions {
+    float: right;
+    padding-top: 2px;
+    font-size: 13px;
+}
+
+.hexEditorFileInfo {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 12px;
+    line-height: 32px;
+}
+
+.hexEditorDownload {
+    
 }
 
 ul.wrapper {
     padding: 5px;
-    margin: 10px;
-    background-color: #ddd;
+    margin: 0px;
+    background-color: #fff;
 }
 
 li.line {
