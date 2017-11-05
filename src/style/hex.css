@@ -29,6 +29,24 @@
     
 }
 
+.hexEditorLineNumber {
+    color: #999;
+}
+
+.hexEditorLineNumberHovered {
+    color: #666;
+}
+
+.divider {
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    margin-right: 3px;
+    margin-left: 3px;
+    vertical-align: middle;
+    background-color: #ddd;
+}
+
 ul.wrapper {
     padding: 5px;
     margin: 0px;

@@ -53,7 +53,7 @@ export default class Hex extends React.Component {
                             fileName={fileName} />
                     </div>
                     <div className={ styles.hexEditorFileInfo }>
-                        239892 bytes
+                        {fileName} <span className={ styles.divider } /> {end - start} bytes
                     </div>
                 </div>
 

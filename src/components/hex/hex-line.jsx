@@ -1,4 +1,5 @@
 import styles from 'style/hex.css';
+import classnames from 'classnames';
 
 import React from 'react';
 import HexCell from 'components/hex/hex-cell';
@@ -104,15 +105,21 @@ export default class HexLine extends React.Component {
     }
 
     render() {
-        let offset = padHex(this.props.offset),
-            size = this.props.size,
-            hexContents = this.getEncodedCell(this.props.offset, this.hexEncoding),
-            asciiContents = this.getEncodedCell(this.props.offset, this.asciiEncoding);
+        const offset = padHex(this.props.offset),
+              size = this.props.size,
+              hoverCellOffset = this.props.hoverCellOffset,
+              hexContents = this.getEncodedCell(this.props.offset, this.hexEncoding),
+              asciiContents = this.getEncodedCell(this.props.offset, this.asciiEncoding),
+              isHighlighted = (hoverCellOffset >= this.props.offset) && (hoverCellOffset < (this.props.offset + size)),
+              lineNumberClassName = classnames(styles.hexEditorLineNumber,
+                                               {
+                                                   [`${styles.hexEditorLineNumberHovered}`]: isHighlighted
+                                               });
 
         return (
             <li className={styles.line}>
                 <code className={styles.contents}>
-                    {offset} <span>{hexContents}</span> <span>{asciiContents}</span>
+                    <span className={ lineNumberClassName }>{offset}</span> <span>{hexContents}</span> <span>{asciiContents}</span>
                 </code>
             </li>
         );
