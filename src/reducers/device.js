@@ -44,6 +44,7 @@ const device = (state = initialState, action) => {
     case 'DEVICE_DOWNLOAD_CODEPLUG_INIT':
         return {
             ...state,
+            downloadProgressBytes: 0,
             isDownloading: true
         };
     case 'DEVICE_DOWNLOAD_CODEPLUG_PROGRESS':
@@ -55,11 +56,6 @@ const device = (state = initialState, action) => {
     case 'DEVICE_DOWNLOAD_CODEPLUG_SUCCESS':
         return {
             ...state,
-            codeplugs: state.codeplugs.concat({
-                deviceId: action.deviceId,
-                date: action.date,
-                data: action.data
-            }),
             isDownloading: false
         };
     case 'DEVICE_DOWNLOAD_CODEPLUG_ERROR':

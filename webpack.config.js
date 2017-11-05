@@ -44,6 +44,7 @@ module.exports = {
     quiet: true,
     inline: true,
     stats: false,
-    watchOptions: { poll: 1000, ignored: /node_modules/ }
+    watchOptions: { poll: 1000, ignored: /node_modules/ },
+    historyApiFallback: true
   }
 };
