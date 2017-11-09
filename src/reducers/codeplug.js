@@ -15,6 +15,10 @@ const initialState = {
  */
 
 const codeplug = (state = initialState, action) => {
+
+    // TODO debug
+    console.log('action: ', action);
+
     switch(action.type) {
     case 'CODEPLUG_ADD':
         return {
