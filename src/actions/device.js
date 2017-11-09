@@ -1,5 +1,6 @@
 import USBService from 'services/usb';
-import addCodeplug from 'actions/codeplug';
+
+import { addCodeplug } from 'actions/codeplug';
 
 export const cleanAttachedDevices = () => {
     return {
