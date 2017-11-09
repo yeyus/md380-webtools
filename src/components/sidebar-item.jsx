@@ -1,6 +1,7 @@
 import * as sidebarStyles from 'style/sidebar.css';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 
@@ -46,7 +47,10 @@ const SidebarItem = (props) => (
         </IconButton>
         <div
             className={ sidebarStyles.label }>
-            { props.label }
+            <Link
+                to={ props.path }>
+                { props.label }
+            </Link>
         </div>
     </li>
 );

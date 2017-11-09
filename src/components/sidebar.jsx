@@ -3,20 +3,9 @@ import * as cssStyles from 'style/index.css';
 import React from 'react';
 import SidebarItem from 'components/sidebar-item';
 
-const items = [
-    {
-        icon: 'usb',
-        label: 'Devices'
-    },
-    {
-        icon: 'layers',
-        label: 'Codeplugs'
-    },
-    {
-        icon: 'public',
-        label: 'UsersDB'
-    }
-];
+import routes from 'configs/routes';
+
+const items = routes.filter((route) => route.label === 'Devices' || route.label === 'Codeplugs' || route.label === 'UsersDB');
 
 const Sidebar = (props) => {
     let itemsHtml = items.map((item, idx) => (
@@ -24,7 +13,8 @@ const Sidebar = (props) => {
             key={idx}
             selected={false}
             icon={item.icon}
-            label={item.label} />
+            label={item.label}
+            path={item.path} />
     ));
 
     return (
