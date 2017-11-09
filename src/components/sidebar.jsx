@@ -11,7 +11,6 @@ const Sidebar = (props) => {
     let itemsHtml = items.map((item, idx) => (
         <SidebarItem
             key={idx}
-            selected={false}
             icon={item.icon}
             label={item.label}
             path={item.path} />

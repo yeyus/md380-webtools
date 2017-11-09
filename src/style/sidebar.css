@@ -13,3 +13,16 @@
     vertical-align: middle;
     height: 65px;
 }
+
+.label a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.activeLink {
+    color: #03A9F4 !important;
+}
+
+.label a:hover {
+    color: #999;
+}

@@ -1,7 +1,7 @@
 import * as sidebarStyles from 'style/sidebar.css';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 
@@ -21,8 +21,8 @@ const styles = {
     },
     selectedIcon: {
         ...baseIcon,
-        color: '#008',
-        iconHoverColor: '#00d'
+        color: '#03A9F4',
+        iconHoverColor: ''
     },
     wrapper: {
         width: 80,
@@ -37,22 +37,27 @@ const styles = {
     }
 };
 
-const SidebarItem = (props) => (
-    <li className={ sidebarStyles.item }>
-        <IconButton
-            iconClassName={ classNames('material-icons') }
-            iconStyle={props.selected ? styles.selectedIcon : styles.icon}
-            style={styles.wrapper}>
-            { props.icon }
-        </IconButton>
-        <div
-            className={ sidebarStyles.label }>
-            <Link
-                to={ props.path }>
-                { props.label }
-            </Link>
-        </div>
-    </li>
-);
+const SidebarItem = (props) => {
+    return (
+        <li className={ sidebarStyles.item }>
+            <IconButton
+                iconClassName={ classNames('material-icons') }
+                iconStyle={ props.location.pathname.indexOf(props.path) === 0 ?
+                                styles.selectedIcon : styles.icon }
+                style={ styles.wrapper }>
+                { props.icon }
+            </IconButton>
+            <div
+                className={ sidebarStyles.label }>
+                <NavLink
+                    activeClassName={ sidebarStyles.activeLink }
+                    to={ props.path }>
+                    { props.label }
+                </NavLink>
+            </div>
+        </li>
+    );
+};
 
-module.exports = SidebarItem;
+
+module.exports = withRouter(SidebarItem);
