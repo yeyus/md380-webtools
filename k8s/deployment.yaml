@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: md380-webtools
+  labels:
+    app: md380-webtools
+spec:
+  template:
+    metadata:
+      labels:
+        app: md380-webtools
+    spec:
+      containers:
+      - name: md380-webtools
+        image: yeyus/md380-webtools
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+          failureThreshold: 5
+
