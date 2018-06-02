@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: md380-webtools-ingress
-  namespace: default
   annotations:
     kubernetes.io/ingress.class: nginx
     # Add to generate certificates for this ingress

@@ -12,11 +12,16 @@ spec:
     spec:
       containers:
       - name: md380-webtools
-        image: yeyus/md380-webtools
+        image: yeyus/md380-webtools:v0.1.0
         imagePullPolicy: Always
         ports:
         - name: http
           containerPort: 8080
+        env:
+        - name: ENTITIES_SERVICE_HOST
+          value: "api-svc"
+        - name: ENTITIES_SERVICE_PORT
+          value: "3000"
         livenessProbe:
           httpGet:
             path: /healthz

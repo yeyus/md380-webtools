@@ -1,4 +1,23 @@
 * MD380 Web
+** Setup
+In order to have a working api gateway the following environment variables have to be set
+
+: ENTITIES_SERVICE_HOST
+: ENTITIES_SERVICE_PORT
+
+it should point to an instance of dmr-entities-api service
+
+If you want to run locally 
+: make dep
+: ENTITIES_SERVICE_HOST=... ENTITIES_SERVICE_PORT=... make run
+
+** Build and release
+
+: make container 
+
+but if you wan to release it, do not forget to increase *package.json* version number as it will determine which version tag the docker image is going to use, then:
+
+: make publish
 
 ** lsusb output
 

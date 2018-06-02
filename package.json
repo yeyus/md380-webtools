@@ -1,6 +1,6 @@
 {
   "name": "md380-web",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "MD380/390 WebUSB toolkit",
   "main": "src/index.jsx",
   "scripts": {

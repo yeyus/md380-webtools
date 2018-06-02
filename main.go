@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/urfave/negroni"
 	"github.com/yeyus/md380-webtools/api/entities"
 	"github.com/yeyus/md380-webtools/api/health"
 	"github.com/yeyus/md380-webtools/config"
@@ -12,7 +13,6 @@ import (
 
 func main() {
 	env := config.GetConfig()
-	staticAssets := http.FileServer(http.Dir("dist"))
 
 	// API endpoints
 	router := mux.NewRouter()
@@ -23,12 +23,17 @@ func main() {
 	// Health and metrics
 	router.HandleFunc("/healthz", health.Handler)
 
-	// Static assets
-	router.Handle("/*", staticAssets)
-
 	// HTML serving
-	http.Handle("/", middleware.UUID(router))
+	n := negroni.New()
+	n.Use(middleware.NewUUID())
+	n.Use(middleware.NewLogger())
+	n.Use(negroni.NewStatic(http.Dir("dist")))
+	n.UseHandler(router)
+	http.Handle("/", n)
 
 	log.Println("Listening to port 8080...")
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Panicf("error instantiating http server: %s", err.Error())
+	}
 }
