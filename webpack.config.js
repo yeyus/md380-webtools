@@ -6,6 +6,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'eval',
   entry: './src/index.jsx',
+  output: {
+    filename: 'bundle.js',
+    path: __dirname + '/dist'
+  },
   resolve: {
     modules: [
       path.join(__dirname, 'src'),

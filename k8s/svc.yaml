@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: md380-webtools-svc
+spec:
+  selector:
+    app: md380-webtools
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
